@@ -3,7 +3,7 @@
 ## SteakHouse Theme
 
 Menggunakan
+
+- html
 - css
-- php
 - js
-- sql
