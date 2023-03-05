@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100vh;
+            width: 100vw;
+            color: white;
+            font-family: merriweather;
+            background-color: #1D1610;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            justify-items: center;
+            align-content: center;
+
+        }
+
+        ::placeholder {
+            font-family: merriweather;
+        }
+
+        .logo {
+            /* height: fit-content; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+
+        .logo img {
+            filter: invert(1) drop-shadow(0 0 .4rem lightblue);
+            transform: scale(0.7);
+            max-width:30rem ;
+        }
+
+        .logo div{
+            transform: translateY(-2rem);
+        }
+
+        .form-container {
+            padding: 1rem;
+            background-color: white;
+            width: 25rem;
+            height: fit-content;
+            box-shadow: 0px 0px 10px lightblue;
+            border-radius: 5px;
+            color: black;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.7rem;
+        }
+
+        form {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-self: center;
+            width: 100%;
+            font-size: 1.7rem;
+
+            /* transform: translateY(15%); */
+        }
+
+        hr {
+            background-color: #1D1610;
+            height: 1px;
+            outline: none;
+            border: none;
+            width: 100%;
+            color: #1D1610;
+            margin-block: 6px;
+        }
+
+
+        input {
+            padding: 7px;
+            margin-block: 0.4rem;
+            outline: none;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1.2rem;
+            font-family: merriweather;
+        }
+
+        input[type=submit] {
+            background-color: #1D1610;
+            margin-top: 1.4rem;
+            margin-bottom: 0rem;
+            color: white;
+            transition: 0.5s;
+        }
+
+        input[type=submit]:hover {
+            background-color: #885A5A;
+            color: white;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: #1877f2;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width:889px) {
+
+            body,
+            html {
+                /* padding-block: 2rem; */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .logo img{
+                max-width: 20rem;
+                transform: translateY(-4rem);
+            }
+
+            .form-container {
+                padding: 1rem;
+                background-color: white;
+                width: 23rem;
+                height: fit-content;
+                box-shadow: 0px 0px 10px lightblue;
+                border-radius: 5px;
+                color: black;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: 1rem;
+            }
+
+            form {
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-self: center;
+                width: 100%;
+                font-size: 1rem;
+
+                /* transform: translateY(15%); */
+            }
+
+            input {
+                padding: 7px;
+                margin-block: 0.4rem;
+                outline: none;
+                border: 1px solid black;
+                border-radius: 5px;
+                width: 100%;
+                font-size: 1rem;
+            }
+
+            input[type=submit] {
+                background-color: #1D1610;
+                margin-top: 1.4rem;
+                margin-bottom: 0rem;
+                color: white;
+                transition: 0.5s;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="logo">
+        <img src="https://cdn.discordapp.com/attachments/935010431980929086/1043444503601762384/logo-schwarz-e1529584351968.png" alt="">
+        <div style="text-align: center;">SUNG'S SteakHouse</div>
+    </div>
+
+    <div class="form-container">
+        <div style="font-weight: bold;">Please Login here</div>
+        <hr>
+        <form action="register.html" method="post" autocomplete="off">
+
+            <input required type="text" placeholder="username" name="username">
+            <input required type="password" placeholder="password" name="password">
+            <input type="submit">
+
+        </form>
+        <div style="font-size: 1rem;">Don't have an account? <a href="register.php">Register here</a></div>
+    </div>
+
+
+
+</body>
+
+</html>

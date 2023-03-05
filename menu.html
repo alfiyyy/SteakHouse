@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="./script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            background-color: #1D1610;
+            color: white;
+            font-family: merriweather;
+            /* background-color: #1D1610; */
+            min-height: 100vh;
+            overflow: overlay;
+            overflow-x: hidden;
+
+
+        }
+
+        body::-webkit-scrollbar {
+            width: 0.6rem;
+        }
+
+        body::-webkit-scrollbar-track {
+            border-radius: 100vw;
+            /* background-color: rgba(128, 128, 128, 0.278); */
+
+        }
+
+        body::-webkit-scrollbar-thumb {
+            width: 0.5rem;
+            background-color: white;
+            border-radius: 100vw;
+            border: 1.4px solid black;
+        }
+
+
+        nav {
+            /* background-color: #2e2e2eeb; */
+            background-color: #1d1610;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            padding-block-start: 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 9;
+        }
+
+        .left-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: inline-block;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        .nav-btn {
+            display: none;
+            text-align: center;
+        }
+
+        .glow {
+            filter: drop-shadow(0px 0px 0.4rem);
+        }
+
+        i {
+            transform: scale(2) translateY(50%);
+            margin-bottom: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #D9CCC2;
+            /* font-size: 1.2em;    */
+            font-size: 24px;
+            padding-inline: 0.5em;
+
+            transition: 0.4s;
+            font-family: merriweather;
+            font-weight: 400;
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .active {
+            color: white;
+        }
+
+        .header {
+            background-color: #1D1610;
+            /* min-height: 15rem; */
+            padding-top: 1rem;
+            padding-bottom: 2rem;
+            margin-top: 4.9rem;
+            width: 100vw;
+
+        }
+
+        .desc {
+            /* margin-top: 1rem; */
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            margin-inline: auto;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding-inline: 3rem;
+            text-align: justify;
+            letter-spacing: 1px;
+            animation: scale-in-center-blurred 1s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+        }
+
+        .desc h2 {
+            font-size: 52px;
+            text-align: center;
+        }
+
+        .menu-cat ul {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-around;
+        }
+
+        .menu-cat li {
+            background-color: white;
+            padding: 7px;
+            padding-inline: 12px;
+            border-radius: 100vw;
+            color: black;
+            list-style: none;
+            transition: 0.3s;
+        }
+
+        .menu-cat li:hover {
+            text-decoration: underline;
+            filter: drop-shadow(0px 0px 0.4rem lightblue);
+        }
+
+        .section-container {
+            background: linear-gradient(180deg, #1D1610, #3D2600, #1D1610) #1D1610;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            gap: 15rem;
+            padding-block-start: 5rem;
+            padding-block-end: 3rem;
+            width: 100vw;
+
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        section h2 {
+            font-size: 3rem;
+            background-color: black;
+            border-radius: 100vw;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+            filter: drop-shadow(0px 0px 0.4rem);
+            margin-bottom: 2rem;
+        }
+
+        .menu-container {
+            /* width: 65vw; */
+            width: 90vw;
+            height: 37rem;
+            border-radius: 10px;
+            background: linear-gradient(90deg, black -100%, rgba(0, 0, 0, 0) 60%, rgb(0, 0, 0) 170%);
+
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            padding-block: 1rem;
+            padding-inline: 10rem;
+            gap: 11rem;
+
+            overflow-x: scroll;
+        }
+
+
+        .menu-container::-webkit-scrollbar {
+            /* display: none; */
+            height: 0.4rem;
+        }
+
+        .menu-container::-webkit-scrollbar-thumb {
+            /* display: none; */
+            background-color: rgb(96, 95, 95);
+            border-radius: 100vh;
+        }
+
+        .menu-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(254, 243, 243, 0.848);
+            filter: drop-shadow(0 0 0.5rem lightblue);
+
+            border-radius: 5px;
+            /* width: 32vw; */
+            width: 24rem;
+            height: 32rem;
+
+        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            height: 14rem;
+            border-radius: 4px 4px 0 0;
+            border-bottom: 20px solid black;
+            /* margin-bottom: 1rem; */
+
+        }
+
+        .menu-desc {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            color: black;
+            align-items: start;
+            justify-content: center;
+            align-self: start;
+
+            height: 100%;
+
+            margin-top: 1rem;
+            font-size: 1.4rem;
+            padding-inline: 2rem;
+        }
+
+        .menu-desc ul {
+            padding-left: 1rem;
+        }
+
+        .menu-desc ul li {
+            margin-block: 1rem;
+        }
+
+        .show {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        button {
+            opacity: 0;
+            position: fixed;
+            height: 3rem;
+            bottom: 13px;
+            right: 30px;
+            padding-inline: 15px;
+            border-radius: 5px;
+            font-family: merriweather;
+            background-color: #533606;
+            color: white;
+            border: 1px solid rgb(168, 73, 4);
+            outline: 1px solid rgb(168, 73, 4);
+        }
+
+        .lds-dual-ring {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 22;
+
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .lds-dual-ring:after {
+            content: " ";
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border-radius: 50%;
+            border: 6px solid #fff;
+            border-color: #fff transparent #fff transparent;
+            animation: lds-dual-ring 1.2s linear infinite;
+        }
+
+        @keyframes lds-dual-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        @keyframes scale-in-center-blurred {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+                opacity: 1;
+                filter: blur(40px);
+            }
+
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        /* phone */
+        @media (max-width:767px) {
+
+            /* .logout-btn a,
+            .logout-btn span {
+                display: none;
+            } */
+
+            nav {
+                justify-content: space-between;
+                padding-inline: 2rem;
+            }
+
+            nav ul li a {
+                padding: 0.3rem;
+                display: none;
+            }
+
+            .nav-btn {
+                display: block;
+            }
+
+            .menu-container {
+                padding-inline: 7rem;
+
+            }
+
+            .menu-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 5px;
+                width: 24rem;
+                /* height: 100%; */
+
+            }
+
+            img {
+                /* width: ; */
+                object-fit: cover;
+                border-radius: 4px 4px 0 0;
+                border-bottom: 20px solid black;
+                /* margin-bottom: 1rem; */
+
+            }
+
+        }
+
+        @media (max-width:575px) {
+            /* nav {
+                height: 5rem;
+            } */
+
+            nav ul li a {
+                font-size: 1.2rem;
+                padding: 0.5rem;
+            }
+
+            .menu-cat ul{
+                gap: 1rem;
+            }
+
+            .menu-cat li {
+                background-color: white;
+                padding: 7px;
+                padding-inline: 12px;
+                border-radius: 100vw;
+                color: black;
+                list-style: none;
+                transition: 0.3s;
+            }
+
+            .menu-container {
+                align-items: center;
+                padding-inline: 4.3rem;
+            }
+
+            .menu-card {
+                border-radius: 5px;
+                width: 20rem;
+                height: 30rem;
+
+            }
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                height: 12.4rem;
+                border-radius: 4px 4px 0 0;
+                border-bottom: 20px solid black;
+                /* margin-bottom: 1rem; */
+
+            }
+
+        }
+
+        @media (max-width:435px) {
+            .menu-container {
+                padding-inline: 1.09rem
+            }
+
+    
+
+        }
+
+        @media (max-width:376px) {
+            .menu-card {
+                width: 18rem;
+            }
+        }
+
+        @media (max-width:320px) {
+            .menu-container {
+                padding-inline: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="lds-dual-ring"></div>
+    <nav>
+        <div class="left-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li> <a href="about.html">About</a></li>
+                <li> <a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <div class="nav-btn"> <i class="fa fa-bars"></i></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="logout-btn"><a href="">Logout</a><span>|| Userxx ||</span></div>
+    </nav>
+
+    <div class="header">
+        <div class="desc">
+            <h2>Food Menu</h2>
+            <span>Come take a look of our menu starting with our steaks </span>
+            <div class="menu-cat">
+                <ul>
+                    <li class="steak-cat">Steaks</li>
+                    <li class="pasta-cat">Pasta</li>
+                    <li class="veggies-cat">Veggies</li>
+                    <li class="beverages-cat">Beverages</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-container">
+
+        <section class="steak">
+            <h2>Steaks</h2>
+            <div class="menu-container">
+
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/rib-eye_steak_with_61963_16x9.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>The Rio Cut</li>
+                                <li>Picanha, AUS Wagyu MBS 7</li>
+                                <li>144k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://www.farmison.com/community/wp-content/uploads/2015/03/how-to-cook-sirloin-steak.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>The Rich Fat Loin</li>
+                                <li>Sirloin, US Prime Sirloin, Black Angus, Grain Fed 200 Days</li>
+                                <li>180k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://resizer.otstatic.com/v2/photos/wide-huge/3/29130436.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>The Prime Optima</li>
+                                <li>Ribeye, US Prime Ribeye, Black Angus, Grain Fed 200 Days</li>
+                                <li>195k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://i.guim.co.uk/img/media/d1889812d3c4001dd7d595ff1ed58abaa9642207/0_369_2048_1229/master/2048.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=e2458e3e8d76f3a80da7b38e5225b579" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>The Bottom Gold</li>
+                                <li>Tri Tip, Bottom Sirloin, AUS Wagyu MBS 7</li>
+                                <li>145k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pasta" data-aos="fade-left">
+            <h2>Pasta</h2>
+            <div class="menu-container">
+
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://www.archanaskitchen.com/images/archanaskitchen/0-Archanas-Kitchen-Recipes/2018/June-07/Pesto_and_Parmesan_Pasta_recipe-1.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Penne & Basil Pistou</li>
+                                <li>Dried Pasta, Cherry Tomato Confit, Grilled Tri-Tip, Basil Oil</li>
+                                <li>145k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://img.chefkoch-cdn.de/rezepte/2291331365346705/bilder/922559/crop-960x540/rigatoni-al-forno.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Rigatoni al Forno</li>
+                                <li>Dried Pasta, Tomato & Meat Sauce, Parmigiano Reggiano, Mozzarella</li>
+                                <li>145k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://img.taste.com.au/VQQEL1x_/taste/2016/11/creamy-fettuccine-carbonara-105940-1.jpeg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Fettuccine Carbonara</li>
+                                <li>Dried Pasta, Beef Cheek, Parmigiano Reggiano, Pecorino, Olive Oil Extra Virgin</li>
+                                <li>155k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="veggies" data-aos="fade-right">
+            <h2>Salad & Vegetables</h2>
+            <div class="menu-container">
+
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://www.seriouseats.com/thmb/Fi_FEyVa3_-_uzfXh6OdLrzal2M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/the-best-caesar-salad-recipe-06-40e70f549ba2489db09355abd62f79a9.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Caesar Salad</li>
+                                <li>Romaine Lettuce, Parmigiano Reggiano, Grilled Tri-Tip, Homemade Caesar Dressing</li>
+                                <li>90k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://auntbeesrecipes.com/wp-content/uploads/2014/02/balsamic-2Basparagus-2Bcropped.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Asparagus & Aged Balsamic</li>
+                                <li>Asparagus Spears wrapped with Beef, Chimichurri, Red Onion and Arugula</li>
+                                <li>90k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://www.vindulge.com/wp-content/uploads/2020/02/Grilled-Vegetables.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Grilled Vegetables</li>
+                                <li>Asparagus, Baby Carrot, Tomato Confit, Garlic Confit,
+                                    Shallot Confit, Extra Virgin Olive Oil</li>
+                                <li>55k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://veganheaven.org/wp-content/uploads/2020/05/Mexican-Salad-9.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Mexican Salad</li>
+                                <li>colorful veggies, cilantro lime salad dressing, and crispy tortilla strips.</li>
+                                <li>85k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="beverages" data-aos="fade-left">
+            <h2>Beverages</h2>
+            <div class="menu-container">
+
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://cdn0-production-images-kly.akamaized.net/w2BdO3EW_KEoOtXgNIdy3BD0qRM=/1200x900/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/891931/original/089534700_1433324667-68063aa4c71469b9f96946f537461f73.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Natural Mineral Water</li>
+                                <li>Served Chilled or Room Temperature</li>
+                                <li>45k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://s3-eu-west-1.amazonaws.com/video.gallereplay.com/artistarea/Sparkling%20Water%20Pouring%20into%20Glass_0af0eb00-c9c3-42aa-9ab3-b0a8c3ce860d/Cinemagraph_watermark_purchasepage/2_large_files/cinemagraph.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Sparkling Mineral Water</li>
+                                <li>Served Chilled or Room Temperature</li>
+                                <li>45k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://cdn.shopify.com/s/files/1/2531/9554/files/jasmine-sencha-green-tea.jpg?v=1560981632" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Jasmine Green Sencha</li>
+                                <li>Served Hot or Iced</li>
+                                <li>45k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/grid/original/33220_lychee-lemon-tea.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Lychee Tea</li>
+                                <li>Served Hot or Iced</li>
+                                <li>45k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="menu-card">
+                        <img src="https://fooddiversity.today/wp-content/uploads/2022/07/24138483_s.jpg" alt="">
+                        <div class="menu-desc">
+                            <ul>
+                                <li>Ramune</li>
+                                <li>Japanese Carbonated Soft Drink, Served Iced or Room Temperature </li>
+                                <li>45k</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button id="topBtn"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></button>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1500,
+            offset: 200
+        });
+
+        window.addEventListener('load', () => {
+            document.querySelector('.lds-dual-ring').style.display = "none"
+            // setTimeout(()=>document.querySelector('.lds-dual-ring').style.display = "none",2000)
+        })
+
+        const steak_section = document.querySelector('.steak').offsetTop
+        const pasta_section = document.querySelector('.pasta').offsetTop
+        const veggies_section = document.querySelector('.veggies').offsetTop
+        const beverages_section = document.querySelector('.beverages').offsetTop
+
+        document.querySelector('.steak-cat').addEventListener('click', () => {
+            document.documentElement.scrollTo({
+                top: steak_section + 25,
+                behavior: "smooth"
+            })
+        })
+        document.querySelector('.pasta-cat').addEventListener('click', () => {
+            document.documentElement.scrollTo({
+                top: pasta_section + 25,
+                behavior: "smooth"
+            })
+        })
+        document.querySelector('.veggies-cat').addEventListener('click', () => {
+            document.documentElement.scrollTo({
+                top: veggies_section + 25,
+                behavior: "smooth"
+            })
+        })
+        document.querySelector('.beverages-cat').addEventListener('click', () => {
+            document.documentElement.scrollTo({
+                top: beverages_section + 25,
+                behavior: "smooth"
+            })
+        })
+    </script>
+
+
+</body>
+
+</html>

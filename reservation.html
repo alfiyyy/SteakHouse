@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            color: white;
+            font-family: merriweather;
+            /* background-color: #1D1610; */
+            overflow: overlay;
+
+            scroll-snap-type: y mandatory;
+            height: 100vh;
+
+        }
+
+        nav {
+            /* /* background-color: #2e2e2eeb; / */
+            background-color: #1d1610;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            padding-block-start: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .left-nav {
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .left-nav ul{
+            margin: 0;
+        }
+
+        nav ul {
+            display: inline-block;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #D9CCC2;
+            font-size: 24px;
+            padding-inline: 0.5em;
+
+            transition: 0.4s;
+            font-family: merriweather;
+            font-weight: 400;
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .active {
+            color: white;
+        }
+        
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <nav>
+        <div class="left-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li> <a class="active" style="pointer-events: none;" href="">About</a></li>
+                <li> <a href="">Food Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="logout-btn"><a href="">Logout</a><span> Userxx </span></div>
+    </nav>
+    <div class="row m-5">
+        <div class="col-6">
+            <table class="table text-white ms-5 text-center" style="width: 70%;">
+                <tr>
+                    <th>No.</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Pax Reservation</th>
+                    <th>Waktu Reservation</th>
+                    <th>Class Reservation</th>
+                    <th>Chef Reservation</th>
+                    <th colspan="2">Action</th>
+                </tr>
+                <!-- <?php
+                    $nomer = 1;
+                    while($jadwal = mysqli_fetch_array($tampil)){
+                ?> -->
+                <tr>
+                    <!-- <td><?=$nomer++?></td>
+                    <td><?=$jadwal['mk']?></td>
+                    <td><?=$jadwal['jurusan']?></td>
+                    <td><?=$jadwal['lab']?></td>
+                    <td><?=$jadwal['waktu_mulai']?>-<?=$jadwal['waktu_selesai']?></td>
+                    <td><a href="ubahjadwal.php?id_jadwal=<?=$jadwal['id_jadwal']?>"><button type="button" class="btn btn-dark border-white">Edit</button></a></td>
+                    <td><a href="jadwal.php?id_jadwal=<?=$jadwal['id_jadwal']?>"><button type="button" class="btn btn-dark border-danger text-danger">Delete</button></a></td> -->
+                </tr>
+                <!-- <?php }?> -->
+            </table>
+        </div>
+        <div class="col-6 text-white " >
+            <div class="container mr-5">
+                <center>
+                <h1 class="mb-3">Input Reservation</h1>
+                <div class="mt-2" style="height: 1px; width: 450px; background-color: rgb(255, 255, 255);"></div>
+                <div class="m-2">Buat jadwal reservasi anda dibawah ini</div>
+                <br><br>
+                <form action="reservation.html" method="POST" style="width: 70%;" autocomplete="off">
+                <div class="row align-items-center" style="margin-bottom: 4mm; width: 100%;">
+                        <input class="form-control bg-dark text-white p-2" type="text" placeholder="INI NANTI PHP NAMA YANG LOGIN" name="nama" style="width: 100%;">
+                </div>
+                <div class="row align-items-center" style="margin-bottom: 4mm; width: 100%;">
+                        <input class="form-control bg-dark text-white p-2" type="text" placeholder="RESERVASI UNTUK BERAPA ORANG" name="person" style="width: 100%;">
+                </div>
+                <div class="" style="width: 100%;">
+                    <select class="form-select bg-dark border-white p-2" name="lab" style="margin-bottom: 4mm; width: 100%; cursor: default; color: white;">
+                        <option selected>Waktu</option>
+                        <!-- <?php
+                            while($data = mysqli_fetch_array($sqll)){
+                        ?>
+                            <option value="<?=$data['id_lab']?>"><?=$data['lab']?></option>
+                        <?php }?> -->
+                    </select>
+                </div>
+                <div class="" style="width: 100%;">
+                    <select class="form-select bg-dark border-white p-2" name="waktu" style="margin-bottom: 4mm; width: 100%; cursor: default; color: white;">
+                        <option selected>Class</option>
+                        <!-- <?php
+                            while($data = mysqli_fetch_array($sqlw)){
+                        ?>
+                            <option value="<?=$data['id_waktu']?>"><?=$data['waktu_mulai']?>-<?=$data['waktu_selesai']?></option>
+                        <?php }?> -->
+                    </select>
+                </div>
+                <div class="" style="width: 100%;">
+                    <select class="form-select bg-dark border-white p-2" name="waktu" style="margin-bottom: 4mm; width: 100%; cursor: default; color: white;">
+                        <option selected>Chef</option>
+                        <!-- <?php
+                            while($data = mysqli_fetch_array($sqlw)){
+                        ?>
+                            <option value="<?=$data['id_waktu']?>"><?=$data['waktu_mulai']?>-<?=$data['waktu_selesai']?></option>
+                        <?php }?> -->
+                    </select>
+                </div>
+                <br> 
+                <div class="" style="width: 100%">
+                    <div class="row">
+                        <div class="col">
+                            <input class="btn btn-dark border-white p-2" type="submit" value="SUBMIT" style="margin-bottom: 3mm;width: 100%; color: white; margin-right: 5%;">
+                        </div>
+                        <div class="col">
+                            <input class="btn btn-dark border-white p-2" type="reset" value="RESET" style="margin-bottom: 3mm;width: 100%; color: white;">
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </center>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
